@@ -1,0 +1,27 @@
+plugins {
+    id "org.sonarqube" version "3.3"
+}
+
+allprojects {
+  ext.baseVersion = "0.1"
+  ext.snapshotVersion = true
+
+  group = "org.sonarqube"
+  version = "$baseVersion" + (snapshotVersion ? "-SNAPSHOT" : "")
+}
+
+sonarqube {
+    properties {
+        property "sonar.projectName", "Battleship Java Project"
+        property "sonar.projectKey", "battleship:java"
+    }
+}
+
+subprojects {
+    apply plugin: 'org.sonarqube'
+    sonarqube {
+        properties {
+            //property "sonar.java.libraries", 
+   	}
+    }
+}

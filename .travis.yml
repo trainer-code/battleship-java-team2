@@ -1,0 +1,28 @@
+language: java
+install: true
+os: linux
+dist: trusty
+jdk: openjdk11
+
+before_install:
+ - chmod +x gradlew
+ - wget https://services.gradle.org/distributions/gradle-7.4.2-bin.zip
+ - unzip -qq gradle-7.4.2-bin.zip
+ - export GRADLE_HOME=$PWD/gradle-7.4.2
+ - export PATH=$GRADLE_HOME/bin:$PATH
+ - gradle -v
+
+script:
+    - gradle wrapper
+    - ./gradlew build
+
+before_deploy: 
+ - cp ./console-app/build/distributions/console-app.zip ./dist/battleship.zip
+deploy: 
+ provider: pages
+ skip-cleanup: true
+ github-token: $GITHUB_TOKEN
+ local_dir: dist
+
+ on:
+  branch: main

@@ -1,0 +1,16 @@
+# Ignore Gradle project-specific cache directory
+.gradle
+gradle
+
+# Ignore Gradle build output directory
+build
+
+console-app/build
+console-app/bin
+
+
+game-controller/build
+game-controller/bin
+
+buildSrc/.gradle
+buildSrc/build
